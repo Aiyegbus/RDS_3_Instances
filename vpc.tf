@@ -18,19 +18,3 @@ resource "aws_subnet" "my_subnet" {
   availability_zone       = "us-west-1a" # Replace with your desired availability zone
   map_public_ip_on_launch = true
 }
-
-# Route Table for Public Subnet (Internet Access)
-resource "aws_route_table" "public_route_table" {
-  vpc_id = aws_vpc.my_vpc.id
-
-  route {
-    cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.my_gw.id
-  }
-}
-
-# Associate the Public Route Table with Subnet
-resource "aws_route_table_association" "public_route_association" {
-  subnet_id      = aws_subnet.my_subnet[count.index].id
-  route_table_id = aws_route_table.public_route_table.id
-}
