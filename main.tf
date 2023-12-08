@@ -17,7 +17,7 @@ resource "aws_instance" "my_ec2_instances" {
   ami                         = var.ami_id
   instance_type               = var.instance_type
   key_name                    = var.key_pair
-  subnet_id                   = aws_subnet.my_subnet[count.index].id
+  subnet_id                   = aws_subnet.my_subnet.id
   associate_public_ip_address = true # Enables public IP addresses for EC2 instances
 
 
