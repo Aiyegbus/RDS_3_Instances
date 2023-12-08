@@ -19,12 +19,12 @@ resource "aws_internet_gateway" "my_gw" {
 
 # Subnets
 resource "aws_subnet" "my_subnet" {
-  count = var.subnet_count
+  count                   = var.subnet_count
   vpc_id                  = aws_vpc.my_vpc.id
   cidr_block              = cidrsubnet(var.vpc_cidr, 2, count.index)
-  availability_zone       = data.aws_availability_zones.my_azs[count.index % var.az_count]
+  availability_zone       = element(data.aws_availability_zones.my_azs.names, count.index % length(data.aws_availability_zones.my_azs.names))
   map_public_ip_on_launch = true
-} 
+}
 
 # RDS Subnet Group
 resource "aws_db_subnet_group" "db_subnet_group" {
