@@ -30,8 +30,8 @@ variable "az_count" {
   default = 2
 }
 
-variable "subnet_count" {
-  default = 2
+variable "subnet_id" {
+  default = ""
 }
 
 variable "db_instance_identifier" {
