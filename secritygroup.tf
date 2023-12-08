@@ -53,9 +53,3 @@ resource "aws_security_group" "rds_security_group" {
   # Add other inbound rules as needed
 }
 
-# RDS Subnet Group
-resource "aws_db_subnet_group" "db_subnet_group" {
-  name       = var.db_subnet_group_name
-  subnet_ids = aws_subnet.my_subnet[*].id
-}
-
